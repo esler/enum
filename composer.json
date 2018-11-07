@@ -1,6 +1,6 @@
 {
     "name": "intraworlds/enum",
-    "description": "Lightweight implementation of enum value object in PHP.",
+    "description": "Lightweight implementation of enum value object",
     "type": "library",
     "require-dev": {
         "phpunit/phpunit": "^7.4"
@@ -12,6 +12,11 @@
             "email": "ondrej.esler@intraworlds.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "IW\\": "src"
+        }
+    },
     "require": {
         "php": ">=7.1"
     }
