@@ -63,6 +63,12 @@ class EnumTest extends TestCase
             'TAMPA' => 1 / 3,
         ], IntraWorldsEnum::toArray());
     }
+
+    function testMethodSearch() {
+        $this->assertSame(IntraWorldsEnum::PILSEN(), IntraWorldsEnum::search(true));
+        $this->assertSame(IntraWorldsEnum::NEW_YORK(), IntraWorldsEnum::search(42));
+        $this->assertNull(IntraWorldsEnum::search(null));
+    }
 }
 
 /**

@@ -108,6 +108,23 @@ abstract class Enum
     }
 
     /**
+     * Search for Enum instance by its value or NULL if nothing found
+     *
+     * @param mixed $for a value to search for
+     *
+     * @return ?Enum
+     */
+    final public static function search($for): ?Enum {
+        foreach (static::toArray() as $key => $value) {
+            if ($value === $for) {
+                return static::__callStatic($key, []);
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Returns name of constant
      *
      * @return string
