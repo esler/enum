@@ -11,7 +11,7 @@ use function array_values;
 use function constant;
 use function defined;
 use function is_array;
-use function print_r;
+use function json_encode;
 
 /**
  * Base for enum-like value object, it defines static methods with same names as constants which returns singleton
@@ -98,7 +98,7 @@ abstract class Enum
      */
     final public function __toString() : string
     {
-        return is_array($this->value) ? print_r($this->value, true) : (string) $this->value;
+        return is_array($this->value) && ($json = json_encode($this->value)) ? $json : (string) $this->value;
     }
 
     /**
