@@ -50,7 +50,7 @@ abstract class Enum
     private $key;
 
     /** @var mixed */
-    private $_value;
+    private $value;
 
     /** @var array */
     private static $_singletons = [];
@@ -93,7 +93,7 @@ abstract class Enum
      * @return string
      */
     final public function __toString(): string {
-        return is_array($this->value) ? json_encode($this->value) : (string) $this->value;
+        return is_array($this->value) ? print_r($this->value, true) : (string) $this->value;
     }
 
     /**
