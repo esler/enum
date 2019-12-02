@@ -1,6 +1,17 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace IW;
+
+use InvalidArgumentException;
+use ReflectionClass;
+use function array_keys;
+use function array_values;
+use function constant;
+use function defined;
+use function is_array;
+use function print_r;
 
 /**
  * Base for enum-like value object, it defines static methods with same names as constants which returns singleton
@@ -41,8 +52,6 @@ namespace IW;
  *   case Hash::MD5: ...
  *   case Hash::SHA1: ...
  * }
- *
- * @author Ondrej Esler <ondrej.esler@intraworlds.com>
  */
 abstract class Enum
 {
@@ -52,58 +61,51 @@ abstract class Enum
     /** @var mixed */
     private $value;
 
-    /** @var array */
-    private static $_singletons = [];
+    /** @var static[] */
+    private static $singletons = [];
 
     /**
      * Constructor
-     *
-     * @param string $key
      */
-    final private function __construct(string $key) {
-        if (!defined(static::class . '::' . $key)) {
-            throw new \InvalidArgumentException('Unknown constant: ' . static::class . '::' . $key);
+    final private function __construct(string $key)
+    {
+        if (! defined(static::class . '::' . $key)) {
+            throw new InvalidArgumentException('Unknown constant: ' . static::class . '::' . $key);
         }
 
         $this->key   = $key;
-        $this->value = \constant(static::class . '::' . $key);
+        $this->value = constant(static::class . '::' . $key);
     }
 
     /**
      * Map class constants to static methods const FOO => FOO(), returns singleton of an enum with value of constant
      *
-     * @param string $key
-     * @param array  $arguments
-     *
-     * @return Enum
+     * @param mixed[] $arguments
      */
-    final public static function __callStatic(string $key, array $arguments): Enum {
+    final public static function __callStatic(string $key, array $arguments) : Enum
+    {
         $singletonId = static::class . $key;
 
-        if (empty(self::$_singletons[$singletonId])) {
-            self::$_singletons[$singletonId] = new static($key);
+        if (empty(self::$singletons[$singletonId])) {
+            self::$singletons[$singletonId] = new static($key);
         }
 
-        return self::$_singletons[$singletonId];
+        return self::$singletons[$singletonId];
     }
 
     /**
      * Returns string representation of constant value
-     *
-     * @return string
      */
-    final public function __toString(): string {
+    final public function __toString() : string
+    {
         return is_array($this->value) ? print_r($this->value, true) : (string) $this->value;
     }
 
     /**
      * Return TRUE if given enum is the same, FALSE otherwise
-     *
-     * @param Enum $enum
-     *
-     * @return bool
      */
-    final public function equals(Enum $enum): bool {
+    final public function equals(Enum $enum) : bool
+    {
         return $this === $enum;
     }
 
@@ -114,7 +116,8 @@ abstract class Enum
      *
      * @return ?Enum
      */
-    final public static function search($for): ?Enum {
+    final public static function search($for) : ?Enum
+    {
         foreach (static::toArray() as $key => $value) {
             if ($value === $for) {
                 return static::__callStatic($key, []);
@@ -126,10 +129,9 @@ abstract class Enum
 
     /**
      * Returns name of constant
-     *
-     * @return string
      */
-    final public function getKey(): string {
+    final public function getKey() : string
+    {
         return $this->key;
     }
 
@@ -138,7 +140,8 @@ abstract class Enum
      *
      * @return mixed
      */
-    final public function getValue() {
+    final public function getValue()
+    {
         return $this->value;
     }
 
@@ -147,7 +150,8 @@ abstract class Enum
      *
      * @return string[]
      */
-    final public static function keys(): array {
+    final public static function keys() : array
+    {
         return array_keys(static::toArray());
     }
 
@@ -156,7 +160,8 @@ abstract class Enum
      *
      * @return mixed[]
      */
-    final public static function values(): array {
+    final public static function values() : array
+    {
         return array_values(static::toArray());
     }
 
@@ -165,8 +170,8 @@ abstract class Enum
      *
      * @return mixed[]
      */
-    final public static function toArray(): array {
-        return (new \ReflectionClass(static::class))->getConstants();
+    final public static function toArray() : array
+    {
+        return (new ReflectionClass(static::class))->getConstants();
     }
-
 }

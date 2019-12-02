@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IW\PHPStan\Reflection;
 
 use PHPStan\Reflection\ClassReflection;
@@ -8,20 +10,14 @@ use PHPStan\Reflection\MethodsClassReflectionExtension;
 
 /**
  * Resolve magic method for enum
- *
- * @author Bohuslav Simek <bohuslav.simek@intraworlds.com>
- * @author Ondrej Esler <ondrej.esler@intraworlds.com>
  */
 class EnumMethodsReflectionExtension implements MethodsClassReflectionExtension
 {
-
     /**
      * Resolve if some class has (provide) specified method
      *
      * @param ClassReflection $classReflection Class reflection
      * @param string          $methodName      Method name
-     *
-     * @return bool
      */
     public function hasMethod(ClassReflection $classReflection, string $methodName) : bool
     {
@@ -33,10 +29,9 @@ class EnumMethodsReflectionExtension implements MethodsClassReflectionExtension
      *
      * @param ClassReflection $classReflection Class reflection
      * @param string          $methodName      Method name
-     *
-     * @return MethodReflection
      */
-    public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection {
+    public function getMethod(ClassReflection $classReflection, string $methodName) : MethodReflection
+    {
         return new EnumMethodReflection($classReflection, $methodName);
     }
 }
