@@ -1,7 +1,5 @@
 Lightweight implementation of enum value object in PHP.
 
-[![CircleCI](https://circleci.com/gh/intraworlds/enum.svg?style=svg)](https://circleci.com/gh/intraworlds/enum)
-
 ## Installation
 Use [Composer] to install the package:
 ```
