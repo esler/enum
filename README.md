@@ -54,6 +54,16 @@ You can user method `search()` for obtaining instance of enum by a value.
 $contentType = ContentTypeEnum::search(apache_request_headers()['Content-Type']);
 ```
 
+## PHPStan integration
+This library is distributed with PHPStan extension which's providing magic methods reflection. Just add following configuration to your `phpstan.neon`
+```yaml
+services:
+    -
+        class: IW\PHPStan\Reflection\EnumMethodsReflectionExtension
+        tags:
+            - phpstan.broker.methodsClassReflectionExtension
+```
+
 ## Alternatives
 - we took most of the inspiration from library [myclabs/php-enum]. It's nice implementation but it's missing singletons and it's not optimized for PHP7.
 - PHP's [SplEnum] needs an extension and also does not support singletons.
