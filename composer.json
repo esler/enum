@@ -11,6 +11,10 @@
         {
             "name": "Ondřej Ešler",
             "email": "ondrej.esler@intraworlds.com"
+        },
+        {
+            "name": "Bohuslav Šimek",
+            "email": "bohuslav.simek@intraworlds.com"
         }
     ],
     "autoload": {

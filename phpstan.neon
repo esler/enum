@@ -3,3 +3,8 @@ parameters:
     paths:
         - src
         - tests
+services:
+    -
+        class: IW\PHPStan\Reflection\EnumMethodsReflectionExtension
+        tags:
+            - phpstan.broker.methodsClassReflectionExtension

@@ -74,6 +74,8 @@ class EnumTest extends TestCase
 /**
  * A value object representing testing enum
  *
+ * @method static mixed KIEV()
+ *
  * @author Ondrej Esler <ondrej.esler@intraworlds.com>
  */
 class IntraWorldsEnum extends Enum
