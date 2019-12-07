@@ -6,6 +6,7 @@ namespace IW;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use function json_encode;
 
 class EnumTest extends TestCase
 {
@@ -80,5 +81,12 @@ class EnumTest extends TestCase
         $this->assertSame(IntraWorldsEnum::PILSEN(), IntraWorldsEnum::search(true));
         $this->assertSame(IntraWorldsEnum::NEW_YORK(), IntraWorldsEnum::search(42));
         $this->assertNull(IntraWorldsEnum::search(null));
+    }
+
+    public function testJsonEncode() : void
+    {
+        $this->assertSame('true', json_encode(IntraWorldsEnum::PILSEN()));
+        $this->assertSame('0.3333333333333333', json_encode(IntraWorldsEnum::TAMPA()));
+        $this->assertSame('{"foo":["bar"]}', json_encode(IntraWorldsEnum::MUNICH()));
     }
 }

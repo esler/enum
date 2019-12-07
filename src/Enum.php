@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IW;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use ReflectionClass;
 use function array_keys;
 use function array_values;
@@ -53,7 +54,7 @@ use function json_encode;
  *   case Hash::SHA1: ...
  * }
  */
-abstract class Enum
+abstract class Enum implements JsonSerializable
 {
     /** @var string */
     private $key;
@@ -141,6 +142,16 @@ abstract class Enum
      * @return mixed
      */
     final public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Returns value for JSON serialization
+     *
+     * @return mixed
+     */
+    final public function jsonSerialize()
     {
         return $this->value;
     }
