@@ -89,4 +89,13 @@ class EnumTest extends TestCase
         $this->assertSame('0.3333333333333333', json_encode(IntraWorldsEnum::TAMPA()));
         $this->assertSame('{"foo":["bar"]}', json_encode(IntraWorldsEnum::MUNICH()));
     }
+
+    public function testPhpstanHinting() : void
+    {
+        $search = static function ($value) : ?IntraWorldsEnum {
+            return IntraWorldsEnum::search($value);
+        };
+
+        $this->assertSame(IntraWorldsEnum::PILSEN(), $search(true));
+    }
 }
