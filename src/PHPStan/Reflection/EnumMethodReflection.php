@@ -10,6 +10,8 @@ use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParameterReflection;
 use PHPStan\Reflection\ParametersAcceptor;
+use PHPStan\TrinaryLogic;
+use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 
@@ -39,6 +41,8 @@ class EnumMethodReflection implements MethodReflection
         $this->methodName      = $methodName;
         $this->variants        = [
             new FunctionVariant(
+                TemplateTypeMap::createEmpty(),
+                null,
                 $this->getParameters(),
                 $this->isVariadic(),
                 $this->getReturnType()
@@ -120,5 +124,40 @@ class EnumMethodReflection implements MethodReflection
     public function getVariants() : array
     {
         return $this->variants;
+    }
+
+    public function isDeprecated() : TrinaryLogic
+    {
+        return TrinaryLogic::createNo();
+    }
+
+    public function getDeprecatedDescription() : ?string
+    {
+        return null;
+    }
+
+    public function isFinal() : TrinaryLogic
+    {
+        return TrinaryLogic::createNo();
+    }
+
+    public function isInternal() : TrinaryLogic
+    {
+        return TrinaryLogic::createNo();
+    }
+
+    public function getThrowType() : ?Type
+    {
+        null;
+    }
+
+    public function hasSideEffects() : TrinaryLogic
+    {
+        return TrinaryLogic::createNo();
+    }
+
+    public function getDocComment() : ?string
+    {
+        return null;
     }
 }
