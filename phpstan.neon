@@ -3,6 +3,8 @@ parameters:
     paths:
         - src
         - tests
+    ignoreErrors:
+        - '#Method IW\\Enum::search\(\) should return static\(IW\\Enum\)\|null but returns IW\\Enum.#'
 services:
     -
         class: IW\PHPStan\Reflection\EnumMethodsReflectionExtension

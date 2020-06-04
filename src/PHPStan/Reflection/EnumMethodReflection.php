@@ -148,7 +148,7 @@ class EnumMethodReflection implements MethodReflection
 
     public function getThrowType() : ?Type
     {
-        null;
+        return null;
     }
 
     public function hasSideEffects() : TrinaryLogic
