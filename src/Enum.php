@@ -115,7 +115,7 @@ abstract class Enum implements JsonSerializable
      *
      * @param mixed $for a value to search for
      *
-     * @return ?static
+     * @return ?Enum
      */
     final public static function search($for) : ?Enum
     {
