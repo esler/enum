@@ -7,6 +7,8 @@ namespace IW;
 use InvalidArgumentException;
 use JsonSerializable;
 use ReflectionClass;
+use ReflectionClassConstant;
+
 use function array_keys;
 use function array_values;
 use function constant;
@@ -175,6 +177,6 @@ abstract class Enum implements JsonSerializable
      */
     final public static function toArray(): array
     {
-        return (new ReflectionClass(static::class))->getConstants();
+        return (new ReflectionClass(static::class))->getConstants(ReflectionClassConstant::IS_PUBLIC);
     }
 }

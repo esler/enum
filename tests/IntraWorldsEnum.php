@@ -13,4 +13,8 @@ class IntraWorldsEnum extends Enum
     public const MUNICH   = ['foo' => ['bar']];
     public const NEW_YORK = 42;
     public const TAMPA    = 1 / 3;
+
+    protected const IM_PROTECTED = true;
+
+    private const IM_PRIVATE = true;
 }
