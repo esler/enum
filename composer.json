@@ -3,19 +3,19 @@
     "description": "Lightweight implementation of enum value object",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": ">=6.0",
-        "phpstan/phpstan": "^0.12.25",
-        "doctrine/coding-standard": "^6.0"
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.4",
+        "doctrine/coding-standard": "^9.0"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Ondřej Ešler",
-            "email": "ondrej.esler@intraworlds.com"
+            "email": "ondrej.esler@peoplepath.com"
         },
         {
             "name": "Bohuslav Šimek",
-            "email": "bohuslav.simek@intraworlds.com"
+            "email": "bohuslav.simek@peoplepath.com"
         }
     ],
     "autoload": {
@@ -29,6 +29,11 @@
         }
     },
     "require": {
-        "php": ">=7.1"
+        "php": ">=8.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

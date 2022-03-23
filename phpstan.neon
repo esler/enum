@@ -4,7 +4,12 @@ parameters:
         - src
         - tests
     ignoreErrors:
-        - '#Method IW\\Enum::search\(\) should return static\(IW\\Enum\)\|null but returns IW\\Enum.#'
+        -
+            message: '#^Method IW\\Enum\:\:search\(\) should return static\(IW\\Enum\)\|null but returns IW\\Enum\.$#'
+            path: src/Enum.php
+        -
+            message: '#^Constant IW\\IntraWorldsEnum\:\:IM_PRIVATE is unused\.$#'
+            path: tests/IntraWorldsEnum.php
 services:
     -
         class: IW\PHPStan\Reflection\EnumMethodsReflectionExtension

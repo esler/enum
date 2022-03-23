@@ -56,14 +56,12 @@ use function json_encode;
  */
 abstract class Enum implements JsonSerializable
 {
-    /** @var string */
-    private $key;
+    private string $key;
 
-    /** @var mixed */
-    private $value;
+    private mixed $value;
 
     /** @var static[] */
-    private static $singletons = [];
+    private static array $singletons = [];
 
     /**
      * Constructor
@@ -83,7 +81,7 @@ abstract class Enum implements JsonSerializable
      *
      * @param mixed[] $arguments
      */
-    final public static function __callStatic(string $key, array $arguments) : Enum
+    final public static function __callStatic(string $key, array $arguments): Enum
     {
         $singletonId = static::class . $key;
 
@@ -97,7 +95,7 @@ abstract class Enum implements JsonSerializable
     /**
      * Returns string representation of constant value
      */
-    final public function __toString() : string
+    final public function __toString(): string
     {
         return is_array($this->value) && ($json = json_encode($this->value)) ? $json : (string) $this->value;
     }
@@ -105,7 +103,7 @@ abstract class Enum implements JsonSerializable
     /**
      * Return TRUE if given enum is the same, FALSE otherwise
      */
-    final public function equals(Enum $enum) : bool
+    final public function equals(Enum $enum): bool
     {
         return $this === $enum;
     }
@@ -114,10 +112,8 @@ abstract class Enum implements JsonSerializable
      * Search for Enum instance by its value or NULL if nothing found
      *
      * @param mixed $for a value to search for
-     *
-     * @return ?Enum
      */
-    final public static function search($for) : ?Enum
+    final public static function search(mixed $for): ?static
     {
         foreach (static::toArray() as $key => $value) {
             if ($value === $for) {
@@ -131,27 +127,23 @@ abstract class Enum implements JsonSerializable
     /**
      * Returns name of constant
      */
-    final public function getKey() : string
+    final public function getKey(): string
     {
         return $this->key;
     }
 
     /**
      * Returns value of constant
-     *
-     * @return mixed
      */
-    final public function getValue()
+    final public function getValue(): mixed
     {
         return $this->value;
     }
 
     /**
      * Returns value for JSON serialization
-     *
-     * @return mixed
      */
-    final public function jsonSerialize()
+    final public function jsonSerialize(): mixed
     {
         return $this->value;
     }
@@ -161,7 +153,7 @@ abstract class Enum implements JsonSerializable
      *
      * @return string[]
      */
-    final public static function keys() : array
+    final public static function keys(): array
     {
         return array_keys(static::toArray());
     }
@@ -171,7 +163,7 @@ abstract class Enum implements JsonSerializable
      *
      * @return mixed[]
      */
-    final public static function values() : array
+    final public static function values(): array
     {
         return array_values(static::toArray());
     }
@@ -181,7 +173,7 @@ abstract class Enum implements JsonSerializable
      *
      * @return mixed[]
      */
-    final public static function toArray() : array
+    final public static function toArray(): array
     {
         return (new ReflectionClass(static::class))->getConstants();
     }

@@ -6,18 +6,19 @@ namespace IW;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+
 use function json_encode;
 
 class EnumTest extends TestCase
 {
-    public function testFailWhenInvalidKey() : void
+    public function testFailWhenInvalidKey(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Unknown constant: IW\IntraWorldsEnum::KIEV');
         IntraWorldsEnum::KIEV();
     }
 
-    public function testMethodEquals() : void
+    public function testMethodEquals(): void
     {
         $city = IntraWorldsEnum::PILSEN();
 
@@ -28,19 +29,19 @@ class EnumTest extends TestCase
         $this->assertFalse(IntraWorldsEnum::TAMPA()->equals($city));
     }
 
-    public function testThatTwoInstancesAreTheSame() : void
+    public function testThatTwoInstancesAreTheSame(): void
     {
         $this->assertSame(IntraWorldsEnum::TAMPA(), IntraWorldsEnum::TAMPA());
     }
 
-    public function testMethodToString() : void
+    public function testMethodToString(): void
     {
         $this->assertSame('1', (string) IntraWorldsEnum::PILSEN());
         $this->assertSame('0.33333333333333', (string) IntraWorldsEnum::TAMPA());
         $this->assertSame('{"foo":["bar"]}', (string) IntraWorldsEnum::MUNICH());
     }
 
-    public function testMethodGetValue() : void
+    public function testMethodGetValue(): void
     {
         $this->assertSame(true, IntraWorldsEnum::PILSEN()->getValue());
         $this->assertSame(['foo' => ['bar']], IntraWorldsEnum::MUNICH()->getValue());
@@ -48,7 +49,7 @@ class EnumTest extends TestCase
         $this->assertSame(1 / 3, IntraWorldsEnum::TAMPA()->getValue());
     }
 
-    public function testMethodGetKey() : void
+    public function testMethodGetKey(): void
     {
         $this->assertSame('PILSEN', IntraWorldsEnum::PILSEN()->getKey());
         $this->assertSame('MUNICH', IntraWorldsEnum::MUNICH()->getKey());
@@ -56,17 +57,17 @@ class EnumTest extends TestCase
         $this->assertSame('TAMPA', IntraWorldsEnum::TAMPA()->getKey());
     }
 
-    public function testMethodKeys() : void
+    public function testMethodKeys(): void
     {
         $this->assertSame(['PILSEN', 'MUNICH', 'NEW_YORK', 'TAMPA'], IntraWorldsEnum::keys());
     }
 
-    public function testMethodValues() : void
+    public function testMethodValues(): void
     {
         $this->assertSame([true, ['foo' => ['bar']], 42, 1 / 3], IntraWorldsEnum::values());
     }
 
-    public function testMethodToArray() : void
+    public function testMethodToArray(): void
     {
         $this->assertSame([
             'PILSEN' => true,
@@ -76,23 +77,23 @@ class EnumTest extends TestCase
         ], IntraWorldsEnum::toArray());
     }
 
-    public function testMethodSearch() : void
+    public function testMethodSearch(): void
     {
         $this->assertSame(IntraWorldsEnum::PILSEN(), IntraWorldsEnum::search(true));
         $this->assertSame(IntraWorldsEnum::NEW_YORK(), IntraWorldsEnum::search(42));
         $this->assertNull(IntraWorldsEnum::search(null));
     }
 
-    public function testJsonEncode() : void
+    public function testJsonEncode(): void
     {
         $this->assertSame('true', json_encode(IntraWorldsEnum::PILSEN()));
         $this->assertSame('0.3333333333333333', json_encode(IntraWorldsEnum::TAMPA()));
         $this->assertSame('{"foo":["bar"]}', json_encode(IntraWorldsEnum::MUNICH()));
     }
 
-    public function testPhpstanHinting() : void
+    public function testPhpstanHinting(): void
     {
-        $search = static function ($value) : ?IntraWorldsEnum {
+        $search = static function ($value): ?IntraWorldsEnum {
             return IntraWorldsEnum::search($value);
         };
 

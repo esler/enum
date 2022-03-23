@@ -19,7 +19,7 @@ class EnumMethodsReflectionExtension implements MethodsClassReflectionExtension
      * @param ClassReflection $classReflection Class reflection
      * @param string          $methodName      Method name
      */
-    public function hasMethod(ClassReflection $classReflection, string $methodName) : bool
+    public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         return $classReflection->isSubclassOf('IW\Enum') && $classReflection->hasConstant($methodName);
     }
@@ -30,7 +30,7 @@ class EnumMethodsReflectionExtension implements MethodsClassReflectionExtension
      * @param ClassReflection $classReflection Class reflection
      * @param string          $methodName      Method name
      */
-    public function getMethod(ClassReflection $classReflection, string $methodName) : MethodReflection
+    public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
     {
         return new EnumMethodReflection($classReflection, $methodName);
     }

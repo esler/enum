@@ -20,14 +20,12 @@ use PHPStan\Type\Type;
  */
 class EnumMethodReflection implements MethodReflection
 {
-    /** @var ClassReflection */
-    private $classReflection;
+    private ClassReflection $classReflection;
 
-    /** @var string */
-    private $methodName;
+    private string $methodName;
 
     /** @var FunctionVariant[] */
-    private $variants;
+    private array $variants;
 
     /**
      * Constructor
@@ -53,7 +51,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Gets declaring class for the reflected method
      */
-    public function getDeclaringClass() : ClassReflection
+    public function getDeclaringClass(): ClassReflection
     {
         return $this->classReflection;
     }
@@ -61,7 +59,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Gets the method prototype
      */
-    public function getPrototype() : ClassMemberReflection
+    public function getPrototype(): ClassMemberReflection
     {
         return $this;
     }
@@ -69,7 +67,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Checks if method is static
      */
-    public function isStatic() : bool
+    public function isStatic(): bool
     {
         return true;
     }
@@ -77,7 +75,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Checks if method is private
      */
-    public function isPrivate() : bool
+    public function isPrivate(): bool
     {
         return false;
     }
@@ -85,7 +83,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Checks if method is public
      */
-    public function isPublic() : bool
+    public function isPublic(): bool
     {
         return true;
     }
@@ -93,7 +91,7 @@ class EnumMethodReflection implements MethodReflection
     /**
      * Gets method name
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->methodName;
     }
@@ -103,17 +101,17 @@ class EnumMethodReflection implements MethodReflection
      *
      * @return ParameterReflection[]
      */
-    public function getParameters() : array
+    public function getParameters(): array
     {
         return [];
     }
 
-    public function isVariadic() : bool
+    public function isVariadic(): bool
     {
         return false;
     }
 
-    public function getReturnType() : Type
+    public function getReturnType(): Type
     {
         return new ObjectType($this->classReflection->getName());
     }
@@ -121,42 +119,42 @@ class EnumMethodReflection implements MethodReflection
     /**
      * @return ParametersAcceptor[]
      */
-    public function getVariants() : array
+    public function getVariants(): array
     {
         return $this->variants;
     }
 
-    public function isDeprecated() : TrinaryLogic
+    public function isDeprecated(): TrinaryLogic
     {
         return TrinaryLogic::createNo();
     }
 
-    public function getDeprecatedDescription() : ?string
+    public function getDeprecatedDescription(): ?string
     {
         return null;
     }
 
-    public function isFinal() : TrinaryLogic
+    public function isFinal(): TrinaryLogic
     {
         return TrinaryLogic::createNo();
     }
 
-    public function isInternal() : TrinaryLogic
+    public function isInternal(): TrinaryLogic
     {
         return TrinaryLogic::createNo();
     }
 
-    public function getThrowType() : ?Type
+    public function getThrowType(): ?Type
     {
         return null;
     }
 
-    public function hasSideEffects() : TrinaryLogic
+    public function hasSideEffects(): TrinaryLogic
     {
         return TrinaryLogic::createNo();
     }
 
-    public function getDocComment() : ?string
+    public function getDocComment(): ?string
     {
         return null;
     }
