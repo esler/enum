@@ -55,6 +55,8 @@ use function json_encode;
  *   case Hash::MD5: ...
  *   case Hash::SHA1: ...
  * }
+ *
+ * @deprecated Use native PHP enumeration.
  */
 abstract class Enum implements JsonSerializable
 {
